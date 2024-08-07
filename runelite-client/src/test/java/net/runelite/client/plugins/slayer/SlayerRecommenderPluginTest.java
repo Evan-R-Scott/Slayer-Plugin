@@ -76,7 +76,7 @@ import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SlayerPluginTest
+public class SlayerRecommenderPluginTest
 {
 	private static final String SUPERIOR_MESSAGE = "A superior foe has appeared...";
 

@@ -1,7 +1,5 @@
 package net.runelite.client.plugins.slayerrecommender;
 
-import java.util.logging.*;
-
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
@@ -16,15 +14,17 @@ import net.runelite.client.plugins.PluginDescriptor;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Example"
+	name = "Slayer Monster Recommender",
+		description = "A plugin intended to optimize slayer tasks by recommending actions to achieve optimal gp/hr and/or xp/hr rates.",
+		tags = {"slayer", "recommendation", "helper", "recommender", "task"}
 )
-public class SlayerPlugin extends Plugin
+public class SlayerRecommenderPlugin extends Plugin
 {
 	@Inject
 	private Client client;
 
 	@Inject
-	private SlayerConfig config;
+	private SlayerRecommenderConfig config;
 
 	@Override
 	protected void startUp() throws Exception
@@ -41,15 +41,32 @@ public class SlayerPlugin extends Plugin
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged gameStateChanged)
 	{
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
-		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + config.greeting(), null);
-		}
+//		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
+//		{
+//			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + config.greeting(), null);
+//		}
 	}
 
 	@Provides
-	SlayerConfig provideConfig(ConfigManager configManager)
+	SlayerRecommenderConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(SlayerConfig.class);
+		return configManager.getConfig(SlayerRecommenderConfig.class);
 	}
+
+	/*
+	Super simple example to follow for using the configurations created to display our recommendations
+	in the plugin panel
+	if (config.bestXP()) {
+		display the recommendations to achieve best xp/hr rates
+	}
+	if (config.bestGP()) {
+		display the recommendations to achieve best gp/hr rates
+	}
+	if (config.perHourRate()) {
+		display the rates we calculated for the monsters
+	}
+	if (config.monsterTips()) {
+		display the helpful info (see Config file)
+	}
+	 */
 }
