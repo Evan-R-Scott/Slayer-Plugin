@@ -217,7 +217,7 @@ public class RuneLite
 
 		Thread.setDefaultUncaughtExceptionHandler((thread, throwable) ->
 		{
-			log.error("Uncaught exception:", throwable);
+		log.error("Uncaught exception:", throwable);
 			if (throwable instanceof AbstractMethodError)
 			{
 				log.error("Classes are out of date; Build with maven again.");
